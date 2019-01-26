@@ -1,0 +1,65 @@
+/* Increase font size as screen size increases */
+html {
+  font-size: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  html {
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  html {
+    font-size: 1.2rem;
+  }
+}
+
+/*
+ *  Navigation header
+ */
+
+/* Set header's height to be fixed = 62px */
+.header {
+  height: 62px;
+}
+
+/* To center vertically brand name after brand logo on the header */
+.navbar-brand {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+/*
+ *  Main body
+ */
+
+.main-content {
+  /* Grow to occupy the remaining content */
+  flex: 1 0 auto;
+  background-image: linear-gradient(30deg, #add8e688 30%, white, #ffffff44),
+                    linear-gradient(-30deg, #add8e688 30%, white, #ffffff44),
+                    linear-gradient(#add8e6, #ffffff88);
+}
+
+.jumbotron {
+  margin: 0;
+  background: #00000000;
+}
+
+
+/*
+ *  Footer
+ */
+
+.footer {
+  background-color: #343a40;
+  color: white;
+  flex: 0 0 auto;
+}
+
+.footer a {
+  color: white;
+}
