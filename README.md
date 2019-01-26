@@ -7,7 +7,7 @@ Get honest feedback
 1. `Fork` and `Clone` this repository.
 2. Move to the root directory of the project(> abierto).
 3. Run the command- `npm install` in your terminal.
-4. Create a file named `.env` in the `client` folder(> abierto/client). It contains the private keys for the APIs used. The list of environment variables is listed below.
+4. Create two files named `.env`. One in the `client` folder(> abierto/client) and other in the `server` folder(> abierto/server). It contains the private keys for the APIs used. The list of environment variables is listed below.
 5. To start the development server, run the command- `npm run dev` in your terminal.
 6. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
@@ -17,11 +17,27 @@ Get honest feedback
 REACT_APP_GOOGLE_SIGNIN_CLIENT_ID=YOUR_CLIENT_ID.apps.googleusercontent.com
 ```
 
+## The `.env` file in `abierto/server` folder
+
+```
+REACT_APP_GOOGLE_SIGNIN_CLIENT_ID=YOUR_CLIENT_ID.apps.googleusercontent.com
+REACT_APP_MONGODB_URI=YOUR_MONGODB_SRV_STRING
+```
+
+**************************************************
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm run dev`
+
+Run the client@3000 port in development mode and the server@5000 port.<br>
+Open [http://localhost:3000](http://localhost:3000) to view the app in the browser.
+
+The client and server will reload if you make any changes.
 
 ### `npm run client`
 
@@ -31,19 +47,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-
 ### `npm run server`
 
 Run the server locally on `5000` port.
 
 The server will restart automatically if you make any edits.
-
-### `npm run dev`
-
-Run the client@3000 port in development mode and the server@5000 port.<br>
-Open [http://localhost:3000](http://localhost:3000) to view the app in the browser.
-
-The client and server will reload if you make any changes.
 
 ### `npm test`
 
