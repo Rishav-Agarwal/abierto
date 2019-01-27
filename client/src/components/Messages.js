@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Profile from './Profile';
+import ListMessages from './ListMessages';
 
 /* Show messages recieved by the user */
 class Messages extends Component {
@@ -9,7 +11,10 @@ class Messages extends Component {
        *  Return sample data
        *  TODO: Fetch messages of the user and display
        */
-      <h1>This will show messages recieved by the user!</h1>
+      <>
+        <Profile />
+        <ListMessages />
+      </>
     );
   }
 }

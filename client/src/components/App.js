@@ -9,6 +9,7 @@ import Footer from './Footer';
 
 // Get the stylesheet for our app
 import '../App.css';
+import '../responsive.css';
 
 /* Starting point of our app */
 class App extends Component {

@@ -22,8 +22,19 @@ const changeVerifyReducer = (verified = false, action) => {
   return verified;
 };
 
+// When we get new user data
+const changeUserData = (user = null, action) => {
+  // If action is to change user data, return the new user data state.
+  // Else, return original state
+  if (action.type === 'CHANGE_USER')
+    return action.payload.user;
+
+  return user;
+};
+
 //Combine the reducers
 export default combineReducers({
   loggedIn: changeLoginReducer,
-  verified: changeVerifyReducer
+  verified: changeVerifyReducer,
+  user: changeUserData
 });

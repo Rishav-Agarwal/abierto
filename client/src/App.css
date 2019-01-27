@@ -1,3 +1,15 @@
+/*
+ *  General styling
+ *
+ *  These styles are not specific to some specific component/element
+ *  Can be used generally for every element/component
+ */
+
+.word-wrap-break {
+  word-wrap: break-word;
+}
+
+
 /* Increase font size as screen size increases */
 html {
   font-size: 1rem;
@@ -32,6 +44,7 @@ html {
 }
 
 
+
 /*
  *  Main body
  */
@@ -48,6 +61,7 @@ html {
   margin: 0;
   background: #00000000;
 }
+
 
 
 /*

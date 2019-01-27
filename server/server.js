@@ -2,6 +2,7 @@ import express from 'express';
 import mongodb from 'mongodb';
 import dotenv from 'dotenv';
 import { OAuth2Client } from 'google-auth-library';
+import hash from 'object-hash';
 
 // Configure environment variables for server
 dotenv.config();
@@ -108,6 +109,8 @@ app.post('/api/v1/createUser', (req, res) => {
         // If user doesn't exist, create one. Else, return data
         if (result === null) {
           // User doesn't exist, create one and return the data
+          user.username = user.name.replace(/ /g, '_') + '_' + hash(user);
+          user.about = 'I am too lazy to change the default text!';
           abiertoDb.collection('user-list').insertOne(user, (err, resMongo) => {
             if (err) {
               res.status(500).json({ "reason": "Internal error" });
@@ -118,7 +121,7 @@ app.post('/api/v1/createUser', (req, res) => {
           });
         } else {
           // User already exists, just return the data
-          res.status(200).json(user);
+          res.status(200).json(result);
         }
       });
     })

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, Nav } from "react-bootstrap";
+import { Link } from 'react-router-dom';
+
 import GoogleAuth from './GoogleAuth';
 
 /* Global header for the app */
@@ -28,10 +30,10 @@ class Header extends Component {
           <Nav className="ml-auto">
             {/* Home button */}
             <Nav.Item>
-              <Nav.Link href="/">Home</Nav.Link>
+              <Link to="/" className="nav-link">Home</Link>
             </Nav.Item>
+            {/* Sign in/ logout component */}
             <Nav.Item>
-              {/* Sign in/Logout button */}
               <GoogleAuth />
             </Nav.Item>
           </Nav>

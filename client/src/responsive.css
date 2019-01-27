@@ -1,0 +1,26 @@
+@media screen and (min-width: 576px) {
+
+  /* Increase profile pic size as screen width increases */
+  .profile__pic {
+    height: 80px;
+    width: 80px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+
+  /* Increase profile pic size as screen width increases */
+  .profile__pic {
+    height: 88px;
+    width: 88px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+
+  /* Increase profile pic size as screen width increases */
+  .profile__pic {
+    height: 96px;
+    width: 96px;
+  }
+}

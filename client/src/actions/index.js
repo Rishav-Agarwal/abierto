@@ -22,3 +22,14 @@ export const changeVerifyState = verified => {
     }
   };
 };
+
+// When we get user data from the server
+export const changeUserData = user => {
+  return {
+    type: 'CHANGE_USER',
+    // New user data
+    payload: {
+      user: user
+    }
+  };
+};

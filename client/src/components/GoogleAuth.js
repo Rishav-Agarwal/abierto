@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import PleaseWait from './PleaseWait';
 
-import { changeLoginState, changeVerifyState } from '../actions';
+import { changeLoginState, changeVerifyState, changeUserData } from '../actions';
 
 /* Component which handles all the task required for user signin/logout */
 class GoogleAuth extends Component {
@@ -29,11 +29,13 @@ class GoogleAuth extends Component {
     axios.post('/api/v1/createUser', {
       id_token: googleRes.getAuthResponse().id_token
     }).then(res => {
-      // Verification successful!
+      // Verification successful! Update state and user data
       this.props.changeVerifyState(true);
+      this.props.changeUserData(res.data);
     }).catch(err => {
       // Verification error!(Either mongodb or token verification)
       this.props.changeVerifyState(false);
+      this.props.changeUserData(null);
       // Since verification failed, logout the user from the app
       this.logout();
     });
@@ -43,12 +45,14 @@ class GoogleAuth extends Component {
   onLoginFailure = googleRes => {
     // Sign in error, set login state to `false`
     this.props.changeLoginState(false);
+    this.props.changeUserData(null);
   };
 
   // If logout is successful, this function is called
   onLogoutSuccess = googleRes => {
     // Logout successful, change login state to `false`
     this.props.changeLoginState(false);
+    this.props.changeUserData(null);
   };
 
   render() {
@@ -128,6 +132,7 @@ export default connect(
   /* Action creators */
   {
     changeLoginState,
-    changeVerifyState
+    changeVerifyState,
+    changeUserData
   }
 )(GoogleAuth);
