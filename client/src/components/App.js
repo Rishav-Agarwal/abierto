@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Header from './Header';
-import MainJumbotron from './MainJumbotron';
+import HomePage from './HomePage';
 import Messages from './Messages';
 import Footer from './Footer';
 
@@ -19,7 +19,7 @@ class App extends Component {
       // The container `div`'s height should cover the whole page
       // to make the main content cover whole page
       // and footer stick to its bottom
-      <div className="d-flex flex-column h-100">
+      <div className="d-flex flex-column h-100 app_theme">
         {/* Header */}
         <Header />
 
@@ -37,7 +37,7 @@ class App extends Component {
               <Redirect to="/messages" />
             ) : (
                 // Not logged in/verified, stay in this page and ask to login
-                <MainJumbotron />
+                <HomePage />
               )
           )} />
 

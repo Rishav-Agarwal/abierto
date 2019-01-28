@@ -10,7 +10,7 @@ class Profile extends Component {
   render() {
     return (
       // Bootstrap container for user profile
-      <Container className="py-2 shadow-sm">
+      <Container className="py-2 app_theme__card">
         {/* Row for profile */}
         <Row>
           {/* Column for profile */}
@@ -51,7 +51,7 @@ class Profile extends Component {
                   {/* Show the unique username */}
                   <p className="w-100 mb-0 text-center text-primary word-wrap-break">{this.props.user.username}</p>
                   {/* Show user's about me */}
-                  <p className="text-muted">{this.props.user.about}</p>
+                  <p className="color-light">{this.props.user.about}</p>
                 </React.Fragment>
               ) : (
                   // User not loaded, show please wait button
