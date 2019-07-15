@@ -15,8 +15,8 @@
 }
 
 .app_theme__card {
-  border-top: 1px solid gray;
-  border-bottom: 1px solid gray;
+  border: 1px solid gray;
+  background: #00000000;
 }
 
 

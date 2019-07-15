@@ -8,7 +8,6 @@
 
   /* Change card style on wider devices */
   .app_theme__card {
-    border: 1px solid gray;
     border-radius: .25em;
   }
 }
