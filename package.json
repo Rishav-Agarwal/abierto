@@ -15,9 +15,9 @@
   "author": "Rishav Agarwal",
   "license": "ISC",
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "10.0.2",
     "concurrently": "^4.0.1",
-    "eslint": "^5.16.0",
+    "eslint": "6.1.0",
     "eslint-config-google": "^0.13.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-config-react-app": "^4.0.1",

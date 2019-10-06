@@ -17,17 +17,20 @@ import ax from 'axios';
 
 let axios = ax;
 
+export const baseurl =
+	process.env.NODE_ENV === 'production'
+		? 'https://abierto.herokuapp.com'
+		: 'http://localhost:3000';
+
 // Options for axios
 const options = {
-	baseURL: `${
-		process.env.NODE_ENV === 'production'
-			? 'https://abierto.herokuapp.com'
-			: 'http://localhost:3000'
-	}/api/v1/`,
+	baseURL: `${baseurl}/api/v1/`,
 	headers: {
 		Authorization: null
 	}
 };
+
+axios = ax.create(options);
 
 // Changing auth header
 // Immediately configure axios for next request

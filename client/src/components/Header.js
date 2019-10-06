@@ -35,6 +35,12 @@ class Header extends Component {
 								Home
 							</Link>
 						</Nav.Item>
+						{/* Messages button */}
+						<Nav.Item>
+							<Link to="/messages" className="nav-link">
+								Messages
+							</Link>
+						</Nav.Item>
 						{/* Sign in/ logout component */}
 						<Nav.Item>
 							<GoogleAuth />

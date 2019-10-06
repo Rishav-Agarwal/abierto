@@ -88,3 +88,12 @@ html {
 .footer a {
   color: white;
 }
+
+
+/*
+ * Extension to bootstrap styles
+ */
+
+ .bg-none {
+   background: none;
+ }

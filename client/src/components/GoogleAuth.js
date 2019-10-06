@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { Button } from 'react-bootstrap';
@@ -38,6 +39,8 @@ class GoogleAuth extends Component {
 				// Verification successful! Update state and user data
 				this.props.changeVerifyState(true);
 				this.props.changeUserData(res.data);
+				if (this.props.location.state)
+					this.props.history.push(this.props.location.state.from.pathname);
 			})
 			.catch(err => {
 				// Verification error!(Either mongodb or token verification)
@@ -128,13 +131,15 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(
-	/* State */
-	mapStateToProps,
-	/* Action creators */
-	{
-		changeLoginState,
-		changeVerifyState,
-		changeUserData
-	}
-)(GoogleAuth);
+export default withRouter(
+	connect(
+		/* State */
+		mapStateToProps,
+		/* Action creators */
+		{
+			changeLoginState,
+			changeVerifyState,
+			changeUserData
+		}
+	)(GoogleAuth)
+);

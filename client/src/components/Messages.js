@@ -12,7 +12,7 @@ class Messages extends Component {
 			 *  TODO: Fetch messages of the user and display
 			 */
 			<>
-				<Profile />
+				<Profile username="self" />
 				<ListMessages />
 			</>
 		);

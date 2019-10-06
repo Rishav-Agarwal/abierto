@@ -33,17 +33,21 @@ const auth = (req, res, next) => {
  * @route: GET /user/check
  * @return: User data if exists
  */
-app.get('/check', auth, (req, res) => {
+app.get('/check/:id', (req, res) => {
 	// Get the user
-	User.findOne(req.query, (err, result) => {
-		if (err) {
-			res.status(500).json({ reason: 'Internal error' });
-			return;
-		}
+	User.findOne(
+		{ id: req.params.id },
+		'-messages -email -uid -__v',
+		(err, result) => {
+			if (err) {
+				res.status(500).json({ reason: 'Internal error', err });
+				return;
+			}
 
-		// Is user fetched successfully, return its data
-		res.json(result);
-	});
+			// Is user fetched successfully, return its data
+			res.json(result);
+		}
+	);
 });
 
 /*
@@ -68,8 +72,9 @@ app.post('/create', auth, (req, res) => {
 		if (result === null) {
 			// User doesn't exist, create one
 			const newUser = new User(req.user);
-			newUser._id = user.name.replace(/ /g, '_') + '_' + hash(user);
+			newUser.id = user.name.replace(/ /g, '_') + '_' + hash(user);
 			newUser.about = 'I am too lazy to change the default text!';
+			newUser.messages = [];
 			// Save thenew user to the database
 			newUser.save().then((res, err) => {
 				if (err) {
@@ -95,12 +100,32 @@ app.post('/create', auth, (req, res) => {
 app.get('/messages', auth, (req, res) => {
 	User.findOne({ uid: req.user.uid }, 'messages -_id')
 		.then(userMessages => {
-			console.log(userMessages);
-			res.status(200).json(userMessages);
+			res
+				.status(200)
+				.json(userMessages.messages != null ? userMessages : { messages: [] });
 		})
 		.catch(err => {
 			res.status(500).json({ reason: 'Internal error! ' + err });
 		});
+});
+
+/*
+ * @desc: Send the message to the specified user
+ * @route: POST /user/send
+ * @body-params: _id  The id of the user to whom the message is to be sent
+ *               message  The message to send
+ */
+app.post('/send', (req, res) => {
+	console.log(req);
+	User.findOneAndUpdate(
+		{ id: req.body.id },
+		{
+			$push: { messages: { message: req.body.message, timestamp: Date.now() } }
+		},
+		{ upsert: true }
+	)
+		.then(ress => res.status(200).json({ result: ress }))
+		.catch(err => res.status(500).json({ reason: 'Internal error! ' + err }));
 });
 
 export default app;

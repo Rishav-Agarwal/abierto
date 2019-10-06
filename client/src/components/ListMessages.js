@@ -13,7 +13,9 @@ class ListMessages extends Component {
 	componentDidMount = () => {
 		axios()
 			.get('/user/messages')
-			.then(res => this.setState({ messages: res.data.messages }));
+			.then(res => {
+				this.setState({ messages: res.data.messages });
+			});
 	};
 
 	render() {
@@ -22,8 +24,8 @@ class ListMessages extends Component {
 				<h5 className="m-3" style={{ color: '#FF8A80' }}>
 					<FaPaperPlane /> Messages
 				</h5>
-				{this.state.messages.map(message => (
-					<Message key={message._id} message={message.message} />
+				{this.state.messages.map((message, idx) => (
+					<Message key={idx} message={message.message} />
 				))}
 			</Container>
 		);
