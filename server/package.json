@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js --exec babel-node",
+    "build": "rm -rf build/* && babel ./ --out-dir ./build --ignore \"./node_modules/**\"",
     "clean": "rm -rf node_modules && rm package-lock.json"
   },
   "keywords": [
