@@ -21,7 +21,7 @@ class ListMessages extends Component {
 	render() {
 		return (
 			<Container>
-				<h5 className="m-3" style={{ color: '#FF8A80' }}>
+				<h5 className="mx-3" style={{ color: '#FF8A80' }}>
 					<FaPaperPlane /> Messages
 				</h5>
 				{this.state.messages.map((message, idx) => (

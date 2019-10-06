@@ -48,7 +48,12 @@ class App extends Component {
 						 */}
 						<Route exact path="/u/:id" component={User} />
 
-						<Route exact path="/edit" component={EditProfile} />
+						<PrivateRoute
+							exact
+							path="/edit"
+							component={EditProfile}
+							isLoggedIn={this.props.isLoggedIn}
+						/>
 
 						<Route path="/" render={() => <h1>Not found!</h1>} />
 					</Switch>

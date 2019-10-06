@@ -42,7 +42,7 @@ class Footer extends Component {
 					{/* Linkedin */}
 					<OverlayTrigger overlay={<Tooltip>Linkedin</Tooltip>}>
 						<a
-							href="https://www.linkedin.com/in/rish-av/"
+							href="https://www.linkedin.com/in/mr-redible/"
 							target="_blank"
 							rel="noreferrer noopener"
 						>

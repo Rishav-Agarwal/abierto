@@ -95,6 +95,20 @@ class Profile extends Component {
 											</span>
 											Share
 										</Button>
+
+										{/* Show profile edit option if viewing messages */}
+										{this.props.username === 'self' && (
+											<Link to="/edit">
+												<Button
+													variant="outline-primary"
+													type="button"
+													className="p-1 ml-1"
+													style={{ fontSize: '10px' }}
+												>
+													Edit profile
+												</Button>
+											</Link>
+										)}
 									</div>
 									{/* Show the unique username */}
 									<Link

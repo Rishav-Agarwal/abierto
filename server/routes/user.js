@@ -62,7 +62,7 @@ app.post('/create', auth, (req, res) => {
 	const user = req.user;
 
 	// Find if user exists in database
-	User.findOne(user, (err, result) => {
+	User.findOne({ uid: user.uid }, (err, result) => {
 		if (err) {
 			res.status(500).json({ reason: 'Internal error' });
 			return;
@@ -116,7 +116,6 @@ app.get('/messages', auth, (req, res) => {
  *               message  The message to send
  */
 app.post('/send', (req, res) => {
-	console.log(req);
 	User.findOneAndUpdate(
 		{ id: req.body.id },
 		{
@@ -126,6 +125,69 @@ app.post('/send', (req, res) => {
 	)
 		.then(ress => res.status(200).json({ result: ress }))
 		.catch(err => res.status(500).json({ reason: 'Internal error! ' + err }));
+});
+
+/*
+ * @desc: Update the user data
+ * @route: PUT /user/update
+ * @body-params: name       Name of the user
+ *               username   Username(id) of the user
+ *               about      About the user
+ */
+app.put('/update', auth, (req, res) => {
+	let { name, username, about } = req.body;
+	let valid = true,
+		nameError = '',
+		usernameError = '';
+
+	// Validate name- Length
+	if (name.length !== 0 && (name.length < 2 || name.length > 100)) {
+		nameError = 'Name length should be atleast 2 and maximmum 100';
+		valid = false;
+	}
+
+	// Validate username- Length, Pattern
+	username = username.trim();
+	// Check pattern
+	if (username.length !== 0 && !/^[a-zA-Z0-9_]+$/.test(username)) {
+		usernameError =
+			'Username can contain only alphaumeric characters and underscore(_)';
+		valid = false;
+	}
+	// Check length
+	if (username.length !== 0 && (username.length < 2 || username.length > 20)) {
+		usernameError = 'Username length should be atleast 2 and maximum 20';
+		valid = false;
+	}
+
+	// If basic requirements are not met, return error
+	if (!valid) {
+		res.status(400).json({ nameError, usernameError });
+		return;
+	}
+
+	User.findOne({ id: username })
+		.then(user => {
+			if (user) {
+				// Username is taken
+				res.status(400).json({ usernameError: 'Username already exists' });
+				return;
+			}
+
+			// Update only the fields requested
+			let toUpdate = {};
+			if (name.length) toUpdate.name = name;
+			if (username.length) toUpdate.id = username;
+			if (about.length) toUpdate.about = about;
+
+			// Update
+			return User.findOneAndUpdate({ uid: req.user.uid }, toUpdate);
+		})
+		.then(updateRes => {
+			console.log(updateRes);
+			if (updateRes) res.status(200).send('Successful');
+		})
+		.catch(err => res.status(500).json({ message: 'Internal error ' + err }));
 });
 
 export default app;

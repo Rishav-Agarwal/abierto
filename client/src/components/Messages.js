@@ -8,13 +8,12 @@ class Messages extends Component {
 	render() {
 		return (
 			/*
-			 *  Return sample data
-			 *  TODO: Fetch messages of the user and display
+			 *  Display messages received by the user
 			 */
-			<>
+			<div className="d-flex flex-column">
 				<Profile username="self" />
 				<ListMessages />
-			</>
+			</div>
 		);
 	}
 }
