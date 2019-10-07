@@ -12,7 +12,7 @@ class ListMessages extends Component {
 
 	componentDidMount = () => {
 		axios()
-			.get('/user/messages')
+			.get('/user/getMessages')
 			.then(res => {
 				this.setState({ messages: res.data.messages });
 			});

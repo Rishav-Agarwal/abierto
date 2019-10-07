@@ -97,7 +97,7 @@ app.post('/create', auth, (req, res) => {
  * @route: GET /user/messages
  * @return: The list of mesages sent to the user
  */
-app.get('/messages', auth, (req, res) => {
+app.get('/getMessages', auth, (req, res) => {
 	User.findOne({ uid: req.user.uid }, 'messages -_id')
 		.then(userMessages => {
 			res
@@ -112,7 +112,7 @@ app.get('/messages', auth, (req, res) => {
 /*
  * @desc: Send the message to the specified user
  * @route: POST /user/send
- * @body-params: _id  The id of the user to whom the message is to be sent
+ * @body-params: id  The id of the user to whom the message is to be sent
  *               message  The message to send
  */
 app.post('/send', (req, res) => {
@@ -120,8 +120,7 @@ app.post('/send', (req, res) => {
 		{ id: req.body.id },
 		{
 			$push: { messages: { message: req.body.message, timestamp: Date.now() } }
-		},
-		{ upsert: true }
+		}
 	)
 		.then(ress => res.status(200).json({ result: ress }))
 		.catch(err => res.status(500).json({ reason: 'Internal error! ' + err }));
