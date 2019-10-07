@@ -47,7 +47,8 @@ app.use(express.urlencoded({ extended: true }));
 
 mongoose.connect(process.env.REACT_APP_MONGODB_URI, {
 	useNewUrlParser: true,
-	useFindAndModify: false
+	useFindAndModify: false,
+	useUnifiedTopology: true
 });
 
 app.use(`${baseUrl}/user`, userRoute);

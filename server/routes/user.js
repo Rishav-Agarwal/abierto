@@ -64,7 +64,7 @@ app.post('/create', auth, (req, res) => {
 	// Find if user exists in database
 	User.findOne({ uid: user.uid }, (err, result) => {
 		if (err) {
-			res.status(500).json({ reason: 'Internal error' });
+			res.status(500).json({ reason: 'Internal error ' + err });
 			return;
 		}
 
@@ -76,7 +76,7 @@ app.post('/create', auth, (req, res) => {
 			newUser.about = 'I am too lazy to change the default text!';
 			newUser.messages = [];
 			// Save thenew user to the database
-			newUser.save().then((res, err) => {
+			newUser.save().then((res1, err) => {
 				if (err) {
 					res.status(500).json({ reason: 'Internal error' });
 					return;
