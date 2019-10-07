@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "install-all": "concurrently --kill-others-on-fail \"cd client && npm install\" \"cd server && npm install\"",
     "client": "cd client && npm start",
-    "server": "cd server && npm start",
+    "server": "cd server && npm run dev",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "clean-client": "cd client && npm run clean",
     "clean-server": "cd server && npm run clean",
@@ -14,13 +14,14 @@
     "heroku-prebuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run install-all",
     "build-client": "cd client && npm run build",
     "build-server": "cd server && npm run build",
-    "build": "concurrently --kill-others-on-fail \"npm run build-client\" \"npm run build-server\""
+    "build": "concurrently --kill-others-on-fail \"npm run build-client\" \"npm run build-server\"",
+    "start": "cd server && npm start"
   },
   "author": "Rishav Agarwal",
   "license": "ISC",
   "devDependencies": {},
   "dependencies": {
-    "babel-eslint": "10.0.2",
+    "babel-eslint": "10.0.3",
     "concurrently": "^4.0.1",
     "eslint": "6.1.0",
     "eslint-config-google": "^0.13.0",

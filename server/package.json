@@ -5,9 +5,10 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js --exec babel-node",
+    "dev": "nodemon server.js --exec babel-node",
     "build": "rm -rf build/* && babel ./ --out-dir ./build --ignore \"./node_modules/**\"",
-    "clean": "rm -rf node_modules && rm package-lock.json"
+    "clean": "rm -rf node_modules && rm package-lock.json",
+    "start": "NODE_ENV=production node ./build/server.js"
   },
   "keywords": [
     "Abierto",
@@ -17,7 +18,15 @@
   ],
   "author": "Rishav Agarwal",
   "license": "ISC",
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "google-auth-library": "^3.0.1",
+    "mongodb": "^3.1.13",
+    "mongoose": "^5.6.4",
+    "object-hash": "^1.3.1",
     "@babel/cli": "^7.5.0",
     "@babel/core": "^7.5.0",
     "@babel/node": "^7.5.0",
@@ -26,14 +35,5 @@
     "babel-preset-minify": "^0.5.0",
     "concurrently": "^4.0.1",
     "nodemon": "^1.18.9"
-  },
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "dotenv": "^6.2.0",
-    "express": "^4.16.4",
-    "google-auth-library": "^3.0.1",
-    "mongodb": "^3.1.13",
-    "mongoose": "^5.6.4",
-    "object-hash": "^1.3.1"
   }
 }
