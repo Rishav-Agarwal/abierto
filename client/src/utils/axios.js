@@ -9,6 +9,7 @@
  *
  * axios().post(...);
  * axios().get(...);
+ * ...
  *
  * Note the `()` after `axios`
  */
