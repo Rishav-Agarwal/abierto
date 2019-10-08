@@ -10,6 +10,11 @@
   color: white;
 }
 
+.app_theme__header {
+  background: rgb(21, 20, 19);
+  color: white;
+}
+
 .color-light {
   color: rgba(255, 255, 255, .5);
 }
