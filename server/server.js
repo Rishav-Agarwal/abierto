@@ -31,12 +31,6 @@ if (process.env.NODE_ENV === 'production') {
 			res.redirect(`https://${req.headers.host}${req.url}`);
 		}
 	});
-	// Set static folder
-	app.use(express.static(path.join(__dirname, '../../client/build/')));
-
-	app.get('*', (req, res) => {
-		res.sendFile(path.join(__dirname, '../../client/build/index.html'));
-	});
 }
 
 const baseUrl = '/api/v1';
@@ -52,5 +46,14 @@ mongoose.connect(process.env.REACT_APP_MONGODB_URI, {
 });
 
 app.use(`${baseUrl}/user`, userRoute);
+
+if (process.env.NODE_ENV === 'production') {
+	// Set static folder
+	app.use(express.static(path.join(__dirname, '../../client/build/')));
+
+	app.get('*', (req, res) => {
+		res.sendFile(path.join(__dirname, '../../client/build/index.html'));
+	});
+}
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
