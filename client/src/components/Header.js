@@ -9,7 +9,13 @@ class Header extends Component {
 	render() {
 		return (
 			// Return the navigation bar
-			<Navbar variant="dark" fixed="top" className="header app_theme">
+			<Navbar
+				collapseOnSelect
+				expand="sm"
+				variant="dark"
+				fixed="top"
+				className="header app_theme"
+			>
 				{/* Brand logo and name */}
 				<Navbar.Brand href="/">
 					{/* Brand logo */}
