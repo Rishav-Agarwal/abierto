@@ -122,7 +122,7 @@ app.post('/send', (req, res) => {
 			$push: { messages: { message: req.body.message, timestamp: Date.now() } }
 		}
 	)
-		.then(ress => res.status(200).json({ result: ress }))
+		.then(() => res.sendStatus(200))
 		.catch(err => res.status(500).json({ reason: 'Internal error! ' + err }));
 });
 
